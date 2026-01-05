@@ -5,27 +5,28 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql" // MUDAMOS DE SQLITE PARA POSTGRESQL
-  url      = env("POSTGRES_PRISMA_URL") // A Vercel vai preencher isso sozinha
-  directUrl = env("POSTGRES_URL_NON_POOLING") // Necessário para Vercel Postgres
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")       
+  directUrl = env("POSTGRES_URL_NON_POOLING") 
 }
 
 model OrdemServico {
-  id        Int      @id // Vamos permitir inserir o ID manualmente (o 10311, etc)
+ 
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
   // Cabeçalho
   dataServico DateTime @default(now())
 
   // Cliente
-  razSocial             String?
-  cnpj                  String?
-  endereco              String?
-  cep                   String?
-  bairro                String?
-  municipio             String?
-  tel                   String?
-  localExecucaoServico  String?
+  razSocial            String?
+  cnpj                 String?
+  endereco             String?
+  cep                  String?
+  bairro               String?
+  municipio            String?
+  tel                  String?
+  localExecucaoServico String?
 
   // Balança
   marca            String?
